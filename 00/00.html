@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00 Vue</title>
+    <style>
+        [v-clock] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="section1">
+            <span>data1</span>
+            <span>data2</span>
+            <span>data3</span>
+            <span>data4</span>
+            <span>data5</span>
+        </div>
+        <div id="section2">
+            <span>data1</span>
+            <span>data2</span>
+            <span>data3</span>
+            <span>data4</span>
+            <span>data5</span>
+        </div>
+        <div id="section3">
+            <span>data1</span>
+            <span>data2</span>
+            <span>data3</span>
+            <span>data4</span>
+            <span>data5</span>
+        </div>
+        <div id="section4">
+            <span>data1</span>
+            <span>data2</span>
+            <span>data3</span>
+            <span>data4</span>
+            <span>data5</span>
+        </div>
+        <div id="section5" v-clock>
+            <p>版權所有 ｜ 轉載必究</p> <!-- HTML -->
+            <p>{{ copyright }}</p> <!-- template -->
+
+            <p>{{ company }} 版權所有 {{ year }} </p>
+            <p>{{ company }} 版權所有 {{ '©' + new Date().getFullYear() }} </p> <!-- 可以放入 template，不用變數-->
+        </div>
+    </div>
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js' integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==' crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script>
+        $(function() {
+        //    old codes
+            
+            // new Vue({}) // 1st choice
+            // section 1 ~ 4
+        }) 
+    </script>
+    <script> // 2nd choice
+        ;(function() { 
+            // Note: 若此為舊專案，只需部分更新成 Vue，建議將 Vue 的 element 設在要改的範圍
+            // 才不會不小心把整個文件改掉
+            // section 5
+
+            new Vue({
+                el: '#section5',
+                data: {
+                    copyright: '版權所有 ｜ 轉載必究',
+                    // company: 'JYUN-TING, LIN',
+                    company: 'JYUN-TING, LIN',
+                    year: '©' + new Date().getFullYear()
+                }
+            })
+        })(); // (): Invoke the function immediately after it is de fined. 
+    </script>
+</body>
+</html>
