@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{ msg }}</p>
+        <p v-once>{{ msg }}</p> <!-- v-once: 不會因為資料被更動而改變 -->
+        <p>{{ html }} rfradfgre</p> <!-- 當文字印出來 -->
+        <p v-text="html">wfferfgfefv</p> <!-- 當 html 印出，會取代 p 內所有！-->
+        <p v-html="html">wfferfgfefv</p> <!-- 當 text 印出，會取代 p 內所有！-->
+        
+        <p v-html="html">程式不支援，JavaScript</p> <!-- 可以使用在，需要被取代內容的情境 -->
+        <!-- <p v-html="test"></p> v-html 會有 xss 攻擊問題 -->
+        
+        <!-- <p>{{ user }}</p> 全域不在白名單，不給用 -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+    <!-- For template 第二種寫法，type 必寫！！ -->
+    <!-- 可以讓 template 的東西透過 src 引入 -->
+    <!-- <script type="text/x-template" id="page-template">  
+        <span style="color: red">This should be red.</span>
+    </script> -->
+
+    <!-- 可外拉 -->
+    <script type="text/x-template" id="page-template" src="./page-template.html">  
+    </script>
+
+    <script>
+        // window.user = 'Kevin';
+        let data = {
+            msg: 'Hello, World!',
+            html: '<span style="color: red">This should be red.</span>',
+            test: '<img src="aaa.jpg" onerror="window.alert(`Error...`)"/>'
+        }
+
+        // Object.freeze(data); 
+
+        let vm = new Vue({
+            el: "#app",
+            // template: '<span style="color: red">This should be red.</span>',
+            // template: "#page-template", // template 另一種語法
+            data,
+            // created() {} // ES6 syntax
+            created: function(){
+                console.log(this);
+            },
+            /// Don't use arrow func!
+            /// this will point to 'window'
+            // created: () => { 
+            //     console.log(this);
+            // }
+        });
+    </script>
+</body>
+</html>
